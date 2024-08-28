@@ -32,7 +32,7 @@ rt_data_code <- function(filename) {
   # Extract indicators
   # The article field is not used within this
   out_df <-
-    oddpub::open_data_search(article_tokens, detected_sentences = T) %>%
+    oddpub::open_data_search(article_tokens) %>%
     dplyr::mutate(article = NA)
 
   # Return

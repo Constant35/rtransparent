@@ -1106,9 +1106,10 @@ rt_register <- function(filename) {
 
   }
 
+  if(is_relevant){
   index_any %<>% purrr::map(function(x) !!length(x))
   index_method %<>% purrr::map(function(x) !!length(x))
-
+  
   results <-
     tibble::tibble(
       article,
@@ -1120,6 +1121,22 @@ rt_register <- function(filename) {
       is_NCT,
       is_explicit
     )
-
+  
   tibble::as_tibble(c(results, index_any, index_method))
+  }else{
+    
+    results <-
+      tibble::tibble(
+        article,
+        pmid,
+        is_register_pred,
+        register_text,
+        is_relevant,
+        is_method,
+        is_NCT,
+        is_explicit
+      )
+    
+    tibble::as_tibble(c(results))
+  }
 }

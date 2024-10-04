@@ -418,7 +418,7 @@ get_reg_title_1 <- function(article) {
 
   if (!!length(a)) {
 
-    if (nchar(article[a + 1]) == 0) {
+    if (nchar(article[a[1] + 1]) == 0) {
       b <- c(a, a + 2)
     } else {
       b <- c(a, a + 1)

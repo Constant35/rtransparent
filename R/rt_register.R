@@ -481,8 +481,11 @@ get_reg_title_2 <- function(article) {
     grep(article, perl = T)
 
   if (!!length(a)) {
-
-    if (nchar(article[a + 1]) == 0) {
+# The initial test failed because nchar(article[a + 1]) returned a vector with multiple values,
+# which is not allowed in an if() condition. The fix checks that all values are identical and scalar,
+# and ensures indices do not exceed the vector length.
+    chars <- nchar(article[a + 1])
+    if (length(unique(chars)) == 1 && unique(chars) == 0) {
       b <- c(a, a + 2)
     } else {
       b <- c(a, a + 1)
